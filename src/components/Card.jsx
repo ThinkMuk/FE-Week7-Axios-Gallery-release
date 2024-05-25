@@ -11,10 +11,21 @@ const Wrapper = styled.div`
   padding: 6px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+
+  h4 {
+    font-size: 15px;
+  }
+  p {
+    font-size: 12px;
+    color: gray;
+  }
 `;
 
+function txtOverflow(txt) {
+  txt = txt.substr(0, 14) + '...';
+  return txt;
+}
 export default function Card({ img, name, id, txt }) {
   const navigate = useNavigate();
   return (
@@ -31,8 +42,8 @@ export default function Card({ img, name, id, txt }) {
       }
     >
       <Photo src={img} />
-      <h4>{name}</h4>
-      <p>{txt}</p>
+      <h4>{name.length < 15 ? name : txtOverflow(name)}</h4>
+      <p>{txt.length < 15 ? txt : txtOverflow(txt)}</p>
     </Wrapper>
   );
 }
